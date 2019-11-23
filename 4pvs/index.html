@@ -88,8 +88,8 @@
             <div class="protected__alert" data-id="alert">Zadali jste špatné heslo</div>
             <div class="protected__content">
                 <h1 class="protected__content__heading">K pokračování na web potřebujete heslo</h1>
-                <input class="protected__content__input" data-id="password" type="password" placeholder="password"/>
-                <button data-id="button" type="button" class="protected__content__btn">Continue</button>
+                <input class="protected__content__input" data-id="password" type="password" placeholder="heslo"/>
+                <button data-id="button" type="button" class="protected__content__btn">Další</button>
             </div>
         </div>
 
@@ -100,7 +100,7 @@
             var password = document.querySelectorAll('[data-id="password"]')
             function login(secret) {
                 var hash = sha1(secret)
-                var url = "4pvs" + hash + "/index.html"
+                var url = hash + "/index.html"
                 var alert = document.querySelectorAll('[data-id="alert"]')
                 var request = new XMLHttpRequest()
                 request.open('GET', url, true)
@@ -110,14 +110,14 @@
                     } else {
                         parent.location.hash = hash
                         alert[0].style.display = 'block'
-                        password[0].setAttribute('placeholder', 'Incorrect password')
+                        password[0].setAttribute('placeholder', 'Nesprávné heslo')
                         password[0].value = ''
                     }
                 }
                 request.onerror = function () {
                     parent.location.hash = hash
                     alert[0].style.display = 'block'
-                    password[0].setAttribute('placeholder', 'Incorrect password')
+                    password[0].setAttribute('placeholder', 'Nesprávné heslo')
                     password[0].value = ''
                 }
                 request.send()
